@@ -38,7 +38,7 @@ if ( empty( $panels ) ) {
 
                     $speed = mt_rand(-20, 100) / 100;
                     ?>
-                    <div class="homepage__grid-item homepage__grid--<?php echo $type; ?> grid__item--<?php echo $item_order; ?>" data-speed="<?php echo $speed; ?>">
+                    <div class="homepage__grid-item homepage__grid--<?php echo $type; ?> grid__item--<?php echo $item_order; ?>">
                         <?php if (!empty($link)) { ?>
                         <a class="card card--<?php echo $type . $card_class; ?>" href="<?php echo $link['url']; ?>" target="<?php echo $link['target']; ?>"> 
                         <?php } else { ?>
