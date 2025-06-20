@@ -1,0 +1,5 @@
+services:
+  -
+    class: Soul\PHPStan\GetThemeModReturnType
+    tags:
+      - phpstan.broker.dynamicFunctionReturnTypeExtension

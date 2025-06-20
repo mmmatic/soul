@@ -1,0 +1,34 @@
+.site__header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    z-index: 100;
+    background-color: var(--color-header-bg);
+    box-shadow: var(--shadow-header);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--xl);
+
+    @media (min-width: 1024px) {
+        padding: 0 var(--xxl);
+    }
+}
+
+.logo {
+    position: fixed;
+    top: var(--xl);
+    left: var(--xl);
+    display: inline-block;
+    z-index: 99;
+    &__img {
+        width: 29px;
+        height: auto;
+
+        @media (min-width: 1024px) {
+            width: 43px;
+        }
+    }
+}

@@ -1,0 +1,86 @@
+<?php
+/**
+ * Soul enqueue scripts
+ *
+ * @package Soul
+ */
+
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
+
+if ( ! function_exists( 'soul_scripts' ) ) {
+	/**
+	 * Load theme's JavaScript and CSS sources.
+	 */
+	function soul_scripts() {
+		// Get the theme data.
+		$the_theme         = wp_get_theme();
+		$theme_version     = $the_theme->get( 'Version' );
+		$bootstrap_version = get_theme_mod( 'soul_bootstrap_version', 'bootstrap4' );
+		$suffix            = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
+		// Grab asset urls.
+		$theme_styles  = "/css/theme{$suffix}.css";
+		$theme_scripts = "/js/theme{$suffix}.js";
+		if ( 'bootstrap4' === $bootstrap_version ) {
+			$theme_styles  = "/css/theme-bootstrap4{$suffix}.css";
+			$theme_scripts = "/js/theme-bootstrap4{$suffix}.js";
+		}
+
+		$css_version = $theme_version . '.' . filemtime( get_template_directory() . $theme_styles );
+		wp_enqueue_style( 'soul-styles', get_template_directory_uri() . $theme_styles, array(), $css_version );
+
+		// Fix that the offcanvas close icon is hidden behind the admin bar.
+		if ( 'bootstrap4' !== $bootstrap_version && is_admin_bar_showing() ) {
+			soul_offcanvas_admin_bar_inline_styles();
+		}
+
+		wp_enqueue_script( 'jquery' );
+
+		$js_version = $theme_version . '.' . filemtime( get_template_directory() . $theme_scripts );
+		wp_enqueue_script( 'soul-scripts', get_template_directory_uri() . $theme_scripts, array(), $js_version, true );
+		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+			wp_enqueue_script( 'comment-reply' );
+		}
+
+	}
+} // End of if function_exists( 'soul_scripts' ).
+
+add_action( 'wp_enqueue_scripts', 'soul_scripts' );
+
+if ( ! function_exists( 'soul_offcanvas_admin_bar_inline_styles' ) ) {
+	/**
+	 * Add inline styles for the offcanvas component if the admin bar is visible.
+	 *
+	 * Fixes that the offcanvas close icon is hidden behind the admin bar.
+	 *
+	 * @since 1.2.0
+	 */
+	function soul_offcanvas_admin_bar_inline_styles() {
+		$navbar_type = get_theme_mod( 'soul_navbar_type', 'collapse' );
+		if ( 'offcanvas' !== $navbar_type ) {
+			return;
+		}
+
+		$css = '
+		body.admin-bar .offcanvas.show  {
+			margin-top: 32px;
+		}
+		@media screen and ( max-width: 782px ) {
+			body.admin-bar .offcanvas.show {
+				margin-top: 46px;
+			}
+		}';
+		wp_add_inline_style( 'soul-styles', $css );
+	}
+}
+
+function disable_jquery_migrate_frontend( $scripts ) {
+    if ( ! is_admin() && isset( $scripts->registered['jquery'] ) ) {
+        $script = $scripts->registered['jquery'];
+        if ( $script->deps ) { // Check if jQuery has any dependencies
+            $script->deps = array_diff( $script->deps, array( 'jquery-migrate' ) );
+        }
+    }
+}
+add_action( 'wp_default_scripts', 'disable_jquery_migrate_frontend' );

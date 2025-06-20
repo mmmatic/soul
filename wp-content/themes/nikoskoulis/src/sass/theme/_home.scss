@@ -1,0 +1,280 @@
+
+
+.homepage {
+    &__grid {
+        font-size: .69444vw;
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+
+        @media (max-width: 1024px) {
+            font-size:1.26953vw;
+        }
+
+        @media (max-width: 767px) {
+            font-size:1.30378vw;
+        }
+
+        @media (max-width: 550px) {
+            font-size:1.81818vw;
+        }
+
+
+        &-container {
+            display: flex;
+            width: max-content;
+            height: 100%;
+        }
+
+        &-panel {
+            position: relative;
+            width: 100vw;
+            &--1 {
+                .grid {
+                    &__item {
+
+                        &--1 {
+                            width: 100%;
+                            max-width: 42.8em;
+                            max-height: 65vh;
+                            height: 51.7em;
+                            transform: translateY(4em);
+                            grid-column: 1;
+                            grid-row: 1;
+
+                            @media (min-width: 576px) {
+                                width: 42.8em;
+                                grid-column-start: 2;
+                                grid-row-start: 5;
+                            }
+
+                            .card__img, 
+                            .js-tilt-glare {
+                                clip-path: polygon(0 0, 100% 5%, 100% 95%, 0 100%);
+                            }
+                        }
+
+                        &--2 {
+                            position: relative;
+                            z-index: 2;
+                            width: 74.2em;
+                            height: 41.9em;
+                            max-width: 964px;
+                            max-height: 55vh;
+
+                            // Grid positioning for default/mobile
+                            grid-column-start: auto; // Not set unless needed
+                            grid-row-start: 5;       // Mobile-first default (max-[550px] moved this to row 5)
+
+                            // Medium screens and up (≥576px)
+                            @include media-breakpoint-up(sm) {
+                                grid-column-start: 6;
+                                grid-row-start: 2;
+                            }
+                        }
+
+                        &--3 {
+                            position: relative;
+                            width: 35.9em;
+                            height: 27.4em;
+                            transform: translateY(15em);
+                            margin-top: 0; // Mobile override (max-[550px]:!mt-[0px])
+
+                            // Mobile-first grid row/col
+                            grid-column-start: auto; // fallback if not used in mobile
+                            grid-row-start: 12;
+
+                            // For screens above 550px
+                            @media (min-width: 551px) {
+                                align-items: flex-end; // items-end
+                                grid-column-start: 9;
+                            }
+
+                            // When height ≤ 920px
+                            @media (max-height: 920px) {
+                                display: flex;
+                                margin-top: -10vh;
+                            }
+                        }
+
+                    }
+                }                
+            }            
+            &--2 {
+                .grid {
+                    &__item {
+
+                        &--1 {
+                            width: 27.7em;
+                            height: 33.4em;
+                            grid-column-start: 2;
+                            grid-row-start: 6;
+                            transform: translateY(3em);
+                            
+                            .card__img,
+                            .js-tilt-glare               
+                             {
+                                clip-path: polygon(0 5%,100% 0,100% 100%,0 95%);
+                            }
+                        }
+
+                        &--2 {
+                            width: 42.8em;
+                            height: 25.5em;
+                            grid-column-start: 5;
+                            grid-row-start: 3;
+
+                            @media (max-height: 920px) {
+                                grid-row-start: 2;
+                            }
+
+                            @media (max-width: 550px) {
+                                grid-row-start: 3 !important; 
+                            }
+
+                        }
+
+                        &--3 {
+                            width: 25em;
+                            height: 29.6em;
+                            grid-column-start: 7;
+                            grid-row-start: 13;
+
+                            @media (max-height: 920px) {
+                                margin-top: -40px;
+                                grid-row-start: 12;
+                            }
+
+                        }
+
+                        &--4 {
+                            width: 47.4rem;
+                            height: 31.6rem;
+                            z-index: 5;
+
+                            @include media-breakpoint-up(sm) {
+                                grid-column-start: 10;
+                                grid-row-start: 9;
+                            }
+
+                        }
+
+                    }
+                }                
+            }            
+            &--3 {
+                .grid {
+                    &__item {
+
+                        &--1 {
+                            width: 27.7em;
+                            height: 33.4em;
+                            grid-column-start: 2;
+                            grid-row-start: 6;
+                            transform: translateY(3em);
+                            
+                            .card__img,
+                            .js-tilt-glare               
+                             {
+                                clip-path: polygon(0 5%,100% 0,100% 100%,0 95%);
+                            }
+                        }
+
+                        &--2 {
+                            width: 42.8em;
+                            height: 25.5em;
+                            grid-column-start: 5;
+                            grid-row-start: 3;
+
+                            @media (max-height: 920px) {
+                                grid-row-start: 2;
+                            }
+
+                            @media (max-width: 550px) {
+                                grid-row-start: 3 !important; 
+                            }
+
+                        }
+
+                        &--3 {
+                            width: 25em;
+                            height: 29.6em;
+                            grid-column-start: 7;
+                            grid-row-start: 13;
+
+                            @media (max-height: 920px) {
+                                margin-top: -40px;
+                                grid-row-start: 12;
+                            }
+
+                        }
+
+                        &--4 {
+                            width: 47.4rem;
+                            height: 31.6rem;
+                            z-index: 5;
+
+                            @include media-breakpoint-up(sm) {
+                                grid-column-start: 10;
+                                grid-row-start: 9;
+                            }
+
+                        }
+
+                    }
+                }                
+            }            
+
+        }
+
+        &-item {
+            position: relative;
+
+            video {
+                max-width: 100%;
+                height: auto;
+                pointer-events: none;
+            }
+        }
+
+
+        .grid {
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            grid-template-rows: repeat(22, 2.5vh);
+            @include media-breakpoint-up(lg) {
+                grid-template-rows: repeat(25,2.5vh);
+            }
+        }
+
+        .card {
+            height: 100%;
+            width: 100%;
+            &--video,
+            &--img {
+            }
+
+            &__img {
+                height: 100%;
+                width: 100%;
+                overflow: hidden;
+                img {
+                    object-fit: cover;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            &__title {
+                @extend .text !optional;
+                margin-top: 5px;
+                overflow: hidden;
+
+                &-text {
+                    display: block;
+                }
+            }
+
+        }
+        
+    }
+}

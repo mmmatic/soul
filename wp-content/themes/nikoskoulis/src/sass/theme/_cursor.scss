@@ -1,0 +1,16 @@
+@media (any-pointer: fine) {
+	.cursor {
+		position: fixed;
+		top: 0;
+		left: 0;
+		display: block;
+		pointer-events: none;
+        z-index: 99999;
+        &__inner {
+            fill: var(--cursor-fill);
+            stroke: var(--cursor-stroke);
+            stroke-width: var(--cursor-stroke-width);
+            opacity: 0.7;
+        }
+    }
+}
